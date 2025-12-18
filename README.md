@@ -362,53 +362,6 @@ pnpm format
 
 ---
 
-## Push to GitHub
-
-```bash
-# Extract and navigate
-unzip n8n-nodes-setforth.zip
-cd n8n-nodes-setforth
-
-# Initialize and push
-git init
-git add .
-git commit -m "Initial commit: n8n Setforth (FORTH®) API community node
-
-Comprehensive n8n integration for the Setforth (FORTH®) debt resolution API.
-
-Resources (38 total):
-- Contact Management: Contact, Lists, Alerts, Notes, Communication, Credit Reports, Documents, Debts, Workflow, Banking
-- Debt Management: Debt, Debt Tasks, Debt Notes
-- Servicing: Enrollment, Settlement Offers, Transactions, Account Statements, Creditors
-- Documents: Documents, Packages, Types, Templates
-- E-Signature: Clixsign integration
-- Credit: Forth Credit (KBA, SMS, Equifax)
-- Communication: Calls, Tasks, Calendar Events
-- Marketing: Campaigns, Email Templates
-- Administration: Teams, Admin Users, Payees
-- Configuration: Content Config, Document Types/Templates
-- Lenders: Monevo, Lending USA
-- Utilities: Data Sources, Phone Search, Routing Validation, Spinwheel
-- Bulk Operations: Update Contacts, Apply Compensation Templates
-
-Trigger Node:
-- 12 webhook events (contact, debt, enrollment, settlement, payment, document, task, workflow)
-
-Testing:
-- test-node.js: Automated validation suite
-- test-setforth-node.sh: Interactive setup script
-- test-workflows/: Pre-built n8n test workflows
-
-Licensed under BSL 1.1 by Velocity BPA, LLC
-Commercial use requires a per-organization license
-FORTH® is a registered trademark of SetForth, Inc."
-
-git remote add origin https://github.com/Velocity-BPA/n8n-nodes-setforth.git
-git branch -M main
-git push -u origin main
-```
-
----
 
 ## Commercial Licensing
 
