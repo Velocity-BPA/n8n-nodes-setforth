@@ -1,0 +1,176 @@
+{
+  "name": "Setforth Contact CRUD Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "crud-0001",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "create",
+        "firstName": "Test",
+        "lastName": "Contact",
+        "email": "test.contact@example.com",
+        "additionalFields": {
+          "phone": "+15551234567",
+          "address": "123 Test Street",
+          "city": "Test City",
+          "state": "CA",
+          "zipCode": "90210"
+        }
+      },
+      "id": "crud-0002",
+      "name": "1. Create Contact",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "notesInFlow": true,
+      "notes": "Create a new test contact"
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "get",
+        "contactId": "={{ $json.id }}"
+      },
+      "id": "crud-0003",
+      "name": "2. Get Contact",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [720, 300],
+      "notesInFlow": true,
+      "notes": "Retrieve the created contact by ID"
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "update",
+        "contactId": "={{ $json.id }}",
+        "updateFields": {
+          "firstName": "Updated",
+          "lastName": "TestContact",
+          "phone": "+15559876543"
+        }
+      },
+      "id": "crud-0004",
+      "name": "3. Update Contact",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [960, 300],
+      "notesInFlow": true,
+      "notes": "Update the contact's information"
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "getHistoryFeed",
+        "contactId": "={{ $json.id }}",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "crud-0005",
+      "name": "4. Get History Feed",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [1200, 300],
+      "notesInFlow": true,
+      "notes": "Get the contact's activity history"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": true,
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "crud-0006",
+      "name": "Confirm Delete?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1440, 300],
+      "notesInFlow": true,
+      "notes": "Set to false to skip deletion"
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "delete",
+        "contactId": "={{ $('3. Update Contact').item.json.id }}"
+      },
+      "id": "crud-0007",
+      "name": "5. Delete Contact",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [1680, 200],
+      "notesInFlow": true,
+      "notes": "Delete the test contact (cleanup)"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "status",
+              "value": "Contact kept (not deleted)"
+            }
+          ]
+        }
+      },
+      "id": "crud-0008",
+      "name": "Skip Delete",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [1680, 400]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [{ "node": "1. Create Contact", "type": "main", "index": 0 }]
+      ]
+    },
+    "1. Create Contact": {
+      "main": [
+        [{ "node": "2. Get Contact", "type": "main", "index": 0 }]
+      ]
+    },
+    "2. Get Contact": {
+      "main": [
+        [{ "node": "3. Update Contact", "type": "main", "index": 0 }]
+      ]
+    },
+    "3. Update Contact": {
+      "main": [
+        [{ "node": "4. Get History Feed", "type": "main", "index": 0 }]
+      ]
+    },
+    "4. Get History Feed": {
+      "main": [
+        [{ "node": "Confirm Delete?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Confirm Delete?": {
+      "main": [
+        [{ "node": "5. Delete Contact", "type": "main", "index": 0 }],
+        [{ "node": "Skip Delete", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    { "name": "testing" },
+    { "name": "setforth" },
+    { "name": "crud" }
+  ]
+}

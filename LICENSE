@@ -1,0 +1,40 @@
+Business Source License 1.1
+
+Licensor:
+Velocity BPA, LLC (Velo-BPA)
+
+Licensed Work:
+n8n SetForth (FORTH®) API Node
+
+Copyright:
+Copyright (c) 2025 Velocity BPA, LLC
+All rights reserved.
+
+Additional Use Grant:
+The Licensed Work may be used, modified, and executed solely for
+personal use, evaluation, development, and internal, non-commercial
+use by a single organization.
+
+Change Date:
+2029-01-01
+
+Change License:
+Apache License, Version 2.0
+
+Terms:
+Commercial use of the Licensed Work is not permitted without an
+active commercial license issued by Velocity BPA, LLC.
+
+Commercial Use includes, but is not limited to:
+- Production use by or on behalf of an organization
+- Use within paid, hosted, managed, or multi-tenant n8n environments
+- Use by consultants, agencies, or system integrators delivering
+  workflows or automations to clients
+- Redistribution, sublicensing, or bundling with commercial products
+- Use by multiple legal entities under a single deployment
+
+This license does not grant any rights to the SetForth (FORTH®) API.
+The FORTH® API is owned and operated by SetForth, Inc. and is governed
+by separate API terms.
+
+FORTH® is a registered trademark of SetForth, Inc.

@@ -1,0 +1,71 @@
+{
+  "name": "n8n-nodes-setforth",
+  "version": "1.0.0",
+  "description": "n8n community node for Setforth (Forth) API - Debt resolution technology platform providing CRM, payment processing, e-signature, and credit reporting services",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "setforth",
+    "forth",
+    "debt-resolution",
+    "debt-settlement",
+    "crm",
+    "fintech",
+    "payment-processing",
+    "e-signature",
+    "credit-reporting"
+  ],
+  "license": "BSL-1.1",
+  "homepage": "https://velobpa.com",
+  "author": {
+    "name": "Velocity BPA",
+    "url": "https://velobpa.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Velocity-BPA/n8n-nodes-setforth.git"
+  },
+  "engines": {
+    "node": ">=18.10",
+    "pnpm": ">=9.1"
+  },
+  "packageManager": "pnpm@9.1.4",
+  "main": "dist/nodes/Setforth/Setforth.node.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SetforthOAuth2Api.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Setforth/Setforth.node.js",
+      "dist/nodes/Setforth/SetforthTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.1",
+    "gulp": "^4.0.2",
+    "n8n-workflow": "*",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "n8n-core": "*"
+  }
+}

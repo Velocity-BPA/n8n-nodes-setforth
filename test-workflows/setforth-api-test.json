@@ -1,0 +1,174 @@
+{
+  "name": "Setforth API Test Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "user",
+        "operation": "getCurrent"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "1. Get Current User",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 140],
+      "notesInFlow": true,
+      "notes": "Test API connectivity by fetching current user info"
+    },
+    {
+      "parameters": {
+        "resource": "contentConfig",
+        "operation": "getDebtStatuses"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "2. Get Debt Statuses",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "notesInFlow": true,
+      "notes": "Fetch available debt statuses from configuration"
+    },
+    {
+      "parameters": {
+        "resource": "contentConfig",
+        "operation": "getDebtTypes"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000004",
+      "name": "3. Get Debt Types",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 460],
+      "notesInFlow": true,
+      "notes": "Fetch available debt types from configuration"
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "search",
+        "returnAll": false,
+        "limit": 5,
+        "filters": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000005",
+      "name": "4. Search Contacts (Limit 5)",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 620],
+      "notesInFlow": true,
+      "notes": "Search for contacts with a limit of 5 results"
+    },
+    {
+      "parameters": {
+        "resource": "team",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000006",
+      "name": "5. Get Teams",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 780],
+      "notesInFlow": true,
+      "notes": "Fetch list of teams in the organization"
+    },
+    {
+      "parameters": {
+        "resource": "emailTemplate",
+        "operation": "getAll",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000007",
+      "name": "6. Get Email Templates",
+      "type": "n8n-nodes-setforth.setforth",
+      "typeVersion": 1,
+      "position": [480, 940],
+      "notesInFlow": true,
+      "notes": "Fetch available email templates"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "test_results",
+              "value": "All API tests completed successfully!"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000008",
+      "name": "Test Summary",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [760, 540]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          { "node": "1. Get Current User", "type": "main", "index": 0 },
+          { "node": "2. Get Debt Statuses", "type": "main", "index": 0 },
+          { "node": "3. Get Debt Types", "type": "main", "index": 0 },
+          { "node": "4. Search Contacts (Limit 5)", "type": "main", "index": 0 },
+          { "node": "5. Get Teams", "type": "main", "index": 0 },
+          { "node": "6. Get Email Templates", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "1. Get Current User": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "2. Get Debt Statuses": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "3. Get Debt Types": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "4. Search Contacts (Limit 5)": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "5. Get Teams": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    },
+    "6. Get Email Templates": {
+      "main": [
+        [{ "node": "Test Summary", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "testing" },
+    { "name": "setforth" }
+  ],
+  "triggerCount": 1,
+  "pinData": {}
+}
