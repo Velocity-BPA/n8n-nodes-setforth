@@ -1,0 +1,20 @@
+# Source files
+nodes/
+credentials/
+test/
+scripts/
+
+# Config files
+.eslintrc.js
+.prettierrc
+tsconfig.json
+jest.config.js
+gulpfile.js
+
+# Development
+.gitignore
+.github/
+*.log
+
+# Keep dist/ and package files
+!dist/
