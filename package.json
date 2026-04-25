@@ -1,5 +1,5 @@
 {
-  "name": "n8n-nodes-setforth",
+  "name": "@velocity-bpa/n8n-nodes-setforth",
   "version": "1.0.0",
   "description": "A comprehensive n8n community node for the Setforth (FORTH) API providing 38 resources and 150+ operations for debt resolution CRM, payment processing, e-signatures, and credit reporting.",
   "license": "SEE LICENSE IN LICENSE.md",
